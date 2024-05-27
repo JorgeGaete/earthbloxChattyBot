@@ -7,23 +7,17 @@ function CreateAssistant() {
     const [instruction, setinstruction] = useState();
     const [model, setModel] = useState();
     const [description, setDescription] = useState();
-
-    const modelOptions = {
-        value: "model 1", label: "Model 1",
-        value: "model 2", label: "Model 2",
-        value: "model 3", label: "Model 3"
-    }
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        navigate('/interaction')
-        //axios.post('', { name, instruction, model, description })
-        //.then(result => {
-        //    console.log(result)
-        //    navigate('/interaction')
-        //})
-        //.catch(err => console.log(err))
+        //navigate('/interaction')
+        axios.post('http://127.0.0.1:5000/createAssistant', { name, instruction, model, description })
+            .then(result => {
+                console.log(result)
+                navigate('/interaction')
+            })
+            .catch(err => console.log(err))
 
     }
 
@@ -70,6 +64,7 @@ function CreateAssistant() {
                             className="form-control rounded-0"
                             required
                             onChange={(e) => setModel(e.target.value)}>
+                            <option value="none" selected disabled hidden>Select an Option</option>
                             <option value="model 1">Model 1</option>
                             <option value="model 2">Model 2</option>
                             <option value="model 3">Model 3</option>
