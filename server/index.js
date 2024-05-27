@@ -17,7 +17,7 @@ app.post('/createAssistant', async (req, res) => {
     const description = req.body.description;
     create_req_json = {
         "name": name,
-        "instruction": instruction,
+        "instructions": instruction,
         "model": model,
         "description": description,
         "response_format": { "type": "json_object" }
